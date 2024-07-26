@@ -3,8 +3,20 @@ import visa from "../assets/Visa.png"
 import master from "../assets/master.png"
 import rupay from "../assets/Rupay.png"
 import icon from "../assets/Right.png"
+import { ICard } from "../types/index"
 
-const right = () => {
+
+const right = ({data}:any) => {
+  console.log(data);
+  let sum = 0
+  function summ(){
+    data.map((elem:ICard) => {
+      sum = sum + elem.price * elem.count
+    }) 
+    
+  }
+  summ()
+
   return (
     <>
         <div className="bg-[#565abb] w-[388px] rounded-[20px] p-[19px] text-colorwhite">
@@ -53,12 +65,14 @@ const right = () => {
                 <input className="bg-[#6268c6] py-[11px] px-[18px] w-[171px] rounded-[6px] outline-none mt-[5px] text-[12px] text-[#c4c4c4]" placeholder="123" id="cvv" type="number" />
               </div>
             </div>
-            <div className="flex justify-between mt-[14.54px] text-[14px] font-[500]">
+
+            <div>
+              <div className="flex justify-between mt-[14.54px] text-[14px] font-[500]">
               <p>
                 Subtotal
               </p>
               <p>
-                $1,668
+                ${sum}
               </p>
             </div>
             <div className="flex justify-between mt-[14.54px] text-[14px] font-[500]">
@@ -74,12 +88,15 @@ const right = () => {
                 Total (Tax incl.)
               </p>
               <p>
-                $1,672
+                ${sum + 4}
               </p>
+            </div>
+            
+              
             </div>
             <div className="bg-[#4de1c1] w-full rounded-[12px] py-[18px] flex justify-between px-[24px] text-[16px] items-center mt-[26px]">
               <p>
-                $1,672
+                ${sum + 4}
               </p>
               <p className="flex items-center gap-[5px]">
                 Checkout  
