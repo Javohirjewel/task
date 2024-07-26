@@ -7,7 +7,6 @@ import { ICard } from "../types/index"
 
 
 const right = ({data}:any) => {
-  console.log(data);
   let sum = 0
   function summ(){
     data.map((elem:ICard) => {
