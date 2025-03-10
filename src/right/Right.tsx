@@ -35,12 +35,12 @@ const Right = ({data}:any) => {
 
   const nameHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (/^[a-zA-Z]+$/.test(value)) {  // faqat harflar uchun
+    if (/^[a-zA-Z]+$/.test(value)) {  
       setInputValueName(value);
     }
   };
 
-  const validateMMYY = (value: string) => {
+  const validateMMYY = (value: string):boolean => {
     const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
 
     if (!regex.test(value)) {
@@ -54,12 +54,9 @@ const Right = ({data}:any) => {
 
   const handleMm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-
-    if (/^\d{0,2}\/?\d{0,2}$/.test(value)) {
-      setInputValueMm(value);
-    }
+    setInputValueMm(value);
+    validateMMYY(value); // har o‘zgarishda validatsiya qilish
   };
-
  
   summ()
   return (
@@ -106,6 +103,7 @@ const Right = ({data}:any) => {
               <div>
                 <label className="text-[14px] font-[500]"  htmlFor="cvv">
                     CVV
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
                 </label><br />
                 <input className="bg-[#6268c6] py-[11px] px-[18px] w-[171px] rounded-[6px] outline-none mt-[5px] text-[12px] text-[#c4c4c4]" placeholder="123" id="cvv" value={inputValue} onChange={cvvHandle}/>
               </div>
