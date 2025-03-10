@@ -1,4 +1,3 @@
-
 import './App.css'
 import Left from "../left/Left"
 import Right from "../right/Right"
@@ -16,8 +15,6 @@ function App() {
       .catch(err => console.log(err))
   }, [])
   
-  
-
   return (
    <>
       <div className='mx-auto w-max flex  mt-[200px] '>

@@ -9,9 +9,6 @@ import combo from "../assets/combo.png"
 import spain from "../assets/spanish.png"
 
 const imageArr = [pizza, combo, spain]
-
-
-
 const left = ({data, setData}:any) => {
     function inc (d:ICard){
         let elem = data.find((item:ICard) => item.id == d.id )
@@ -28,13 +25,15 @@ const left = ({data, setData}:any) => {
         let newData = data.map((item:ICard) => item.id == d.id ? newElem : item)
         setData(newData);
     }
-    
+    function removeList(id:number){
+        const newList = data.filter((list:any) => list.id !== id)
+        setData(newList)   
+    }
     return (
     <>
         <div className="w-[708px] pl-[45px] pr-[55px]">
         <div className="flex items-center pb-[30px] border-b-[#d0cfcf] border-b-[1.5px] border-solid">
-            <img className="w-[25px]" src={cancel_img} alt="image" />
-            
+            <img className="w-[25px]" src={cancel_img} alt="image" />       
             <p className="text-[#1e1e1e] font-[600] text-[18px] font-pop cursor-pointer ">
                 Shopping Continue
             </p>
@@ -46,7 +45,6 @@ const left = ({data, setData}:any) => {
             You have 3 item in your cart
         </p>
         <div className="mt-[29px] flex flex-col gap-[24px]">
-
             {data.map((d:ICard, i:number) => {
                 return  <div className="card py-[9px] px-[10px] flex items-center rounded-[15px]" key={i}>
                 <img src={imageArr[i]}  className="w-[80px] rounded-[8px]" alt="img" />
@@ -67,15 +65,14 @@ const left = ({data, setData}:any) => {
                     className="cursor-pointer" src={dropTop} alt="image" />
                     <img
                     onClick={() => {dec(d)}} 
-                    className="mt-[8px] cursor-pointer" src={dropBot} alt="image" />
+                        className="mt-[8px] cursor-pointer" src={dropBot} alt="image" />
                     </div>
                 </div>
                 <div className="text-[14px] font-pop font-[500] text-colorsecond ml-[44px] w-[60px] text-right">
                     ${d.price}
                 </div>  
-                <img className="w-[25px] ml-[38px] cursor-pointer" src={del} alt="image" />
+                    <img className="w-[25px] ml-[38px] cursor-pointer" onClick={() => removeList(data[0].id)} src={del} alt="image" />
                 </div>
-                
             })}
         </div>
         </div>
